@@ -21,7 +21,8 @@ public class GatewayApplication {
 	@Bean
 	RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route(r->r.path("/service1/**").uri("http://localhost:4040/"))
+				.route(r->r.header("MSName", "service1") .uri("http://localhost:4040/"))
+				.route(r->r.header("MSName", "service2").uri("http://localhost:4050/"))
 				.build();
 	}
 
